@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.rain</groupId>
+    <artifactId>SpringMyBatis</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- Junit version -->
+        <junit.version>4.13.2</junit.version>
+
+        <!-- Lombok version -->
+        <lombok.version>1.18.20</lombok.version>
+
+        <!-- MySQL version -->
+        <mysql.version>8.0.25</mysql.version>
+
+        <!-- Druid version -->
+        <druid.version>1.2.6</druid.version>
+
+        <!-- MyBatis version -->
+        <mybatis.version>3.5.7</mybatis.version>
+
+        <!-- MyBatis Spring version -->
+        <mybatis.spring.version>2.0.6</mybatis.spring.version>
+
+        <!-- Spring version -->
+        <aopalliance.version>1.0</aopalliance.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <spring.version>5.2.3.RELEASE</spring.version>
+        <spring-aop.version>${spring.version}</spring-aop.version>
+        <spring-aspects.version>${spring.version}</spring-aspects.version>
+        <spring-beans.version>${spring.version}</spring-beans.version>
+        <spring-context.version>${spring.version}</spring-context.version>
+        <spring-context-support.version>${spring.version}</spring-context-support.version>
+        <spring-core.version>${spring.version}</spring-core.version>
+        <spring-expression.version>${spring.version}</spring-expression.version>
+        <spring-instrument.version>${spring.version}</spring-instrument.version>
+        <spring-jdbc.version>${spring.version}</spring-jdbc.version>
+        <spring-jms.version>${spring.version}</spring-jms.version>
+        <spring-messaging.version>${spring.version}</spring-messaging.version>
+        <spring-orm.version>${spring.version}</spring-orm.version>
+        <spring-oxm.version>${spring.version}</spring-oxm.version>
+        <spring-test.version>${spring.version}</spring-test.version>
+        <spring-tx.version>${spring.version}</spring-tx.version>
+        <spring-web.version>${spring.version}</spring-web.version>
+        <spring-webmvc.version>${spring.version}</spring-webmvc.version>
+        <spring-websocket.version>${spring.version}</spring-websocket.version>
+    </properties>
+
+    <dependencies>
+        <!-- maven scope 的作用 https://blog.csdn.net/u010002184/article/details/87989164 -->
+
+        <!-- 测试框架 -->
+        <!-- Junit -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 减少实体类代码 -->
+        <!-- Lombok -->
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <!-- java 连接 mysql 数据库 -->
+        <!-- MySQL -->
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- 阿里数据库连接池 -->
+        <!-- Druid -->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+
+        <!-- MyBatis 轻量级持久层框架 -->
+        <!-- MyBatis -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+
+        <!-- 关联 MyBatis 和 Spring 的包 -->
+        <!-- MyBatis Spring -->
+        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis.spring.version}</version>
+        </dependency>
+
+        <!-- Commons logging -->
+        <!-- Spring 必需的第三方 JAR 包 commons.logging 处理日志信息 -->
+        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+
+        <!-- 如果只需要使用 Spring 基本功能，只需要导入以下 5 个库即可 -->
+        <!-- spring-core、spring-beans、spring-context、spring-expression、commons-logging -->
+        <!--               -->
+        <!-- Apache Common Logging API https://commons.apache.org/proper/commons-logging/download_logging.cgi -->
+        <!-- Spring                    https://repo.spring.io/release/org/springframework/spring/ -->
+        <!--               -->
+        <!-- Spring 目录介绍 -->
+        <!-- docs	包含 Spring 的 API 文档和开发规范 -->
+        <!-- libs	包含开发需要的 jar 包和源码包 -->
+        <!-- schema	包含开发所需要的 schema 文件，在这些文件中定义了 Spring 相关配置文件的约束 -->
+        <!--               -->
+        <!-- spring-core-x.x.xx.RELEASE.jar	      包含 Spring 框架基本的核心工具类，Spring 其他组件都要用到这个包中的类，是其他组件的基本核心。 -->
+        <!-- spring-beans-x.x.xx.RELEASE.jar	  所有应用都要用到的，它包含访问配置文件、创建和管理 Bean 以及进行 Inversion of Control（IoC）或者 Dependency Injection（DI）操作相关的所有类。 -->
+        <!-- spring-context-x.x.xx.RELEASE.jar	  Spring 提供在基础 IoC 功能上的扩展服务，此外还提供许多企业级服务的支持，如邮件服务、任务调度、JNDI 定位、EJB 集成、远程访问、缓存以及各种视图层框架的封装等 -->
+        <!-- spring-expression-x.x.xx.RELEASE.jar 定义了 Spring 的表达式语言。 -->
+        <!-- 需要注意的是，在使用 Spring 开发时，除了 Spring 自带的 JAR 包以外，还需要一个第三方 JAR 包 commons.logging 处理日志信息 -->
+        <!-- 学习：http://c.biancheng.net/spring/environment.html -->
+
+
+        <!-- Spring -->
+        <!-- 1、Data Access/Integration（数据访问 / 集成） -->
+        <!-- 数据访问／集成层包括 JDBC、ORM、OXM、JMS 和 Transactions 模块 -->
+        <!-- JDBC 模块：提供了一个 JDBC 的样例模板，使用这些模板能消除传统冗长的 JDBC 编码还有必须的事务控制，而且能享受到 Spring 管理事务的好处 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring-jdbc.version}</version>
+        </dependency>
+        <!-- ORM 模块：提供与流行的“对象-关系”映射框架无缝集成的 API，包括 JPA、JDO、Hibernate 和 MyBatis 等。而且还可以使用 Spring 事务管理，无需额外控制事务 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring-orm.version}</version>
+        </dependency>
+        <!-- OXM 模块：提供了一个支持 Object /XML 映射的抽象层实现，如 JAXB、Castor、XMLBeans、JiBX 和 XStream。将 Java 对象映射成 XML 数据，或者将XML 数据映射成 Java 对象 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-oxm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <version>${spring-oxm.version}</version>
+        </dependency>
+        <!-- JMS 模块：指 Java 消息服务，提供一套 “消息生产者、消息消费者”模板用于更加简单的使用 JMS，JMS 用于用于在两个应用程序之间，或分布式系统中发送消息，进行异步通信 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>${spring-jms.version}</version>
+        </dependency>
+        <!-- Transactions 事务模块：支持编程和声明式事务管理 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring-tx.version}</version>
+        </dependency>
+
+        <!-- 2、Web模块 -->
+        <!-- Spring 的 Web 层包括 Web、Servlet、WebSocket 和 Portlet 组件 -->
+        <!-- Web 模块：提供了基本的 Web 开发集成特性，例如多文件上传功能、使用的 Servlet 监听器的 IOC 容器初始化以及 Web 应用上下文 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring-web.version}</version>
+        </dependency>
+        <!-- Servlet 模块：提供了一个 Spring MVC Web 框架实现。Spring MVC 框架提供了基于注解的请求资源注入、更简单的数据绑定、数据验证等及一套非常易用的 JSP 标签，完全无缝与 Spring 其他技术协作 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-webmvc.version}</version>
+        </dependency>
+        <!-- WebSocket 模块：提供了简单的接口，用户只要实现响应的接口就可以快速的搭建 WebSocket Server，从而实现双向通讯 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring-websocket.version}</version>
+        </dependency>
+        <!-- 用的很少，而且最后一次发布于2020年12月9日，版本为 4.3.30.RELEASE，所以就不导入了 -->
+        <!-- Portlet 模块：提供了在 Portlet 环境中使用 MVC 实现，类似 Web-Servlet 模块的功能 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc-portlet -->
+        <!-- <dependency> -->
+        <!--     <groupId>org.springframework</groupId> -->
+        <!--     <artifactId>spring-webmvc-portlet</artifactId> -->
+        <!--     <version>4.3.30.RELEASE</version> -->
+        <!-- </dependency> -->
+
+        <!-- 3. Core Container（Spring的核心容器） -->
+        <!-- Spring 的核心容器是其他模块建立的基础，由 Beans 模块、Core 核心模块、Context 上下文模块和 SpEL 表达式语言模块组成，没有这些核心容器，也不可能有 AOP、Web 等上层的功能 -->
+        <!-- Beans 模块：提供了框架的基础部分，包括控制反转和依赖注入 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring-beans.version}</version>
+        </dependency>
+        <!-- Core 核心模块：封装了 Spring 框架的底层部分，包括资源访问、类型转换及一些常用工具类 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring-core.version}</version>
+        </dependency>
+        <!-- Context 上下文模块：建立在 Core 和 Beans 模块的基础之上，集成 Beans 模块功能并添加资源绑定、数据验证、国际化、Java EE 支持、容器生命周期、事件传播等。ApplicationContext 接口是上下文模块的焦点 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-context.version}</version>
+        </dependency>
+        <!-- spring-context-support 是 spring-context 的补充 -->
+        <!-- 详情：https://www.cnblogs.com/nexusHan/p/14818463.html -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring-context-support.version}</version>
+        </dependency>
+        <!-- SpEL(Spring Expression Language) 模块：提供了强大的表达式语言支持，支持访问和修改属性值，方法调用，支持访问及修改数组、容器和索引器，命名变量，支持算数和逻辑运算，支持从 Spring 容器获取 Bean，它也支持列表投影、选择和一般的列表聚合等 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-expression -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring-expression.version}</version>
+        </dependency>
+        <!-- 4、AOP、Aspects、Instrumentation 和 Messaging -->
+        <!-- 在 Core Container 之上是 AOP、Aspects 等模块 -->
+        <!-- AOP Alliance 是 java 中对于面向切面提供了一系列标准化接口，Spring 或其他具有 AOP 概念的框架会依赖这个包 -->
+        <!-- https://mvnrepository.com/artifact/aopalliance/aopalliance -->
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>${aopalliance.version}</version>
+        </dependency>
+        <!-- AOP 模块：提供了面向切面编程实现，提供比如日志记录、权限控制、性能统计等通用功能和业务逻辑分离的技术，并且能动态的把这些功能添加到需要的代码中，这样各司其职，降低业务逻辑和通用功能的耦合 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-aop.version}</version>
+        </dependency>
+        <!-- Aspects 模块：提供与 AspectJ 的集成，是一个功能强大且成熟的面向切面编程（AOP）框架 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${spring-aspects.version}</version>
+        </dependency>
+        <!-- Instrumentation 模块：提供了类工具的支持和类加载器的实现，可以在特定的应用服务器中使用 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-instrument -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-instrument</artifactId>
+            <version>${spring-instrument.version}</version>
+        </dependency>
+        <!-- messaging 模块：Spring 4.0 以后新增了消息（Spring-messaging）模块，该模块提供了对消息传递体系结构和协议的支持 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-messaging -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+            <version>${spring-messaging.version}</version>
+        </dependency>
+
+        <!-- 5、Test模块 -->
+        <!-- Test 模块：Spring 支持 Junit 和 TestNG 测试框架，而且还额外提供了一些基于 Spring 的测试功能，比如在测试 Web 框架时，模拟 Http 请求的功能 -->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 还有 Spring WebFlux、Spring Jcl -->
+        <!-- Spring WebFlux 是随 Spring 5 推出的响应式 Web 框架 https://blog.csdn.net/get_set/article/details/79480233 -->
+        <!-- Spring Jcl，JCL 全称：Jakarta Commons Logging，spring-jcl 采用了设计模式中的“适配器模式”，它对外提供统一的接口，然后在适配类中将对日志的操作委托给具体的日志框架 https://blog.csdn.net/small_to_large/article/details/86668346 -->
+    </dependencies>
+
+
+</project>
